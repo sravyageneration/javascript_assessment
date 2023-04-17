@@ -1,0 +1,196 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Registration form</title>
+  </head>
+  <body>
+    <div class="image">
+      <img src="./illustration.svg" />
+    </div>
+
+    <div class="title">Ticket Booking Form</div>
+
+    <div class="form">
+      <form id="myform" action="#" method="get">
+        <div class="group">
+          <label for="username">User Name</label>
+
+          <input
+            type="text"
+            name="username"
+            id="username1"
+            placeholder="Emma Kate"
+            pattern="[a-zA-Z]{3,}"
+            title="Only Alphabets"
+          />
+          <div class="errormessage"></div>
+        </div>
+
+        <!-- password -->
+
+        <div class="group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password here"
+          />
+          <div class="errormessage"></div>
+         </div> 
+
+          <!-- email form-->
+          <div class="group">
+            <label for="email">Email</label>
+            <i class="far fa-envelope"></i>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="abc@gmail.com"
+            />
+            <div class="errormessage"></div>
+            </div>
+
+            <!-- phone number -->
+            <div class="group">
+              <label for="phonenum">Phone Number</label>
+              <i class="fas fa-lock"></i>
+              <input
+                type="tel"
+                class="form-control"
+                name="mobile"
+                id="num"
+                value="+61"
+                placeholder="eg+61 123 456 789"
+              />
+              <div class="errormessage"></div>
+            </div>
+
+            <!--  **
+                 Booking Date and Time
+                           ** -->
+            <div>
+              <label for="datetime">Booking Date & Time</label>
+              <input
+                type="date"
+                name="datevalid"
+                id="date_time"
+                placeholder="datetime"
+              />
+              <div class="errormessage"></div>
+            </div>
+
+            <button type="submit" value="submit" name="submit">submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById("myform");
+      const username = document.getElementById("username1");
+      const password = document.getElementById("password1");
+      const  mobile= document.getElementById("num");
+
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (username.value.trim() === "") {
+          error(username, "username cannot be empty");
+        } else {
+          success(username);
+        }
+
+        //password validation
+
+        if (password.value.trim() === '') {
+        setError(password, 'Password can not be empty!');
+       } else if (password.value.trim().length < 6 || password.value.trim().length > 20) {
+        setError(password, 'Password  min 6 and max 20 characters');
+      } else {
+        setSuccess(password);
+      }
+      //email id validation
+
+      function isEmailValid(email) {
+     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     return emailRegex.test(email);
+     }
+
+     //mobile validation
+     if (mobile1.length == 10)
+                             {
+                                return true
+                             }
+                          else if(mobile1.length < 10 || mobile.length > 10)   
+                                 {
+                                   alert( "enter the correct 10 digits number");
+                                   return false;
+                                }
+
+       //DOB validation
+       let curdate=new Date();
+                         let dob2=Date(document.myform.datevalid.value)
+        
+                         if (dob2>curdate)
+                                {
+                                   alert( "enter the correct DOB");
+                                   return false;
+                                }  
+       
+      });
+
+      function error(element, errordescription) {
+        const parent = element.parentElement;
+        console.log("parent---", parent);
+
+        element.style.borderColor = "red";
+
+        const parent1 = parent.getElementsByClassName("errormessage")[0];
+
+        parent1.innerHTML = errordescription;
+      }
+
+      function success(element) {
+        const parent = element.parentElement;
+        element.style.borderColor = "green";
+
+        const parent1 = parent.getElementsByClassName("errormessage")[0];
+        parent1.innerHTML = "";
+      }
+      function error(element, errordescription) {
+        const parent = element.parentElement;
+        console.log("parent---", parent);
+
+        element.style.borderColor = "red";
+
+        const parent1 = parent.getElementsByClassName("errormessage")[0];
+
+        parent1.innerHTML = errordescription;
+      }
+
+          //password function 
+      function setSuccess(element) {
+        const parent = element.parentElement;
+        element.style.borderColor = "green";
+
+        const parent1 = parent.getElementsByClassName("errormessage")[0];
+        parent1.innerHTML = "";
+      }
+     function setError(element, errordescription) {
+        const parent = element.parentElement;
+        console.log("parent---", parent);
+
+        element.style.borderColor = "red";
+
+        const parent1 = parent.getElementsByClassName("errormessage")[0];
+
+        parent1.innerHTML = errordescription;
+      }
+      
+    </script>
+  </body>
+</html>
